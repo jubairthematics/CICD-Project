@@ -32,7 +32,8 @@ pipeline {
                 }
             }
         }
-
+    }
+    
     post {
         always {
             echo " pipeline finished for build #${BUILD_NUMBER}"
@@ -43,7 +44,6 @@ pipeline {
         failure {
             echo "Build failed! Please check the logs for more details."
         }
-    }
 
     }
 }
