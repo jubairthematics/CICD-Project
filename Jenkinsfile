@@ -14,17 +14,5 @@ pipeline {
             }
         }
 
-        stage('Build DOcker Image') {
-            steps {
-                script{
-                    dockerImage = docker.build("${IMAGE_NAME}:${BUILD_NUMBER}")
-                }
-            }
-        }
-        stage('Run Container') {
-            steps {
-                sh " docker run -d -p 5000:5000 ${IMAGE_NAME}:${BUILD_NUMBER}"
-            }
-        }
     }
 }
