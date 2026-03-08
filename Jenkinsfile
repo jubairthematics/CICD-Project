@@ -23,6 +23,15 @@ pipeline {
             }
         }
 
+        stage('Snyck Scan'){
+            steps{
+                script{
+                    echo "Running Snyk Scan"
+                    sh "snyk container test ${IMAGE_NAME}:${BUILD_NUMBER} || true"
+                }
+            }
+        }
+
         stage ('Run Docker Container') {
             steps {
                 script{
@@ -33,7 +42,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always {
             echo " pipeline finished for build #${BUILD_NUMBER}"
